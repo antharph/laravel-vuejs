@@ -42,7 +42,7 @@ export default new Vuex.Store({
             const token = resp.data.token
             const user = resp.data.user
             localStorage.setItem('token', token)
-            axios.defaults.headers.common['Authorization'] = token
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
             commit('auth_success', token, user)
             resolve(resp)
           })
@@ -102,6 +102,6 @@ export default new Vuex.Store({
   getters : {
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
-    baseUrl: state => 'http://local.ligph.com:8081'
+    baseUrl: state => 'http://127.0.0.1:8000'
   }
 })
